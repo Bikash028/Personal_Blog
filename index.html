@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">Latest Blogs</h1>
+
+{% if posts %}
+
+    {% for post in posts %}
+
+    <div class="card mb-3">
+
+        <div class="card-body">
+
+            <h3>{{ post.title }}</h3>
+
+            <p>
+                {{ post.content[:200] }}...
+            </p>
+
+            <small>
+                By {{ post.author.username }}
+            </small>
+
+            <br><br>
+
+            <a href="{{ url_for('view_post',
+            post_id=post.id) }}"
+            class="btn btn-primary">
+                Read More
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+<p>No blogs available.</p>
+
+{% endif %}
+
+{% endblock %}
